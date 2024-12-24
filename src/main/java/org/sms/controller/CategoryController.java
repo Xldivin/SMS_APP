@@ -15,13 +15,14 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/category")
     public ResponseEntity<Category> addCategory(@RequestBody Category category) {
         Category createdCategory = categoryService.addCategory(category);
         return ResponseEntity.ok(createdCategory);
     }
 
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/all")
     public ResponseEntity<List<Category>> getAllCategories() {
         List<Category> categories = categoryService.getAllCategories();

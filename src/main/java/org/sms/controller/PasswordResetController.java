@@ -16,6 +16,7 @@ public class PasswordResetController {
     @Autowired
     private AuthService authService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/forgot-password")
     public ResponseEntity<?> handleForgotPassword(@RequestBody Map<String, String> request) {
         String email = request.get("email");
@@ -32,6 +33,7 @@ public class PasswordResetController {
                 ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to send email.");
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/reset-password")
     public ResponseEntity<?> validateResetToken(@RequestParam("token") String token) {
         boolean isValidToken = authService.validatePasswordResetToken(token);
@@ -39,6 +41,7 @@ public class PasswordResetController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or expired token.");
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> request) {
         String token = request.get("token");

@@ -21,12 +21,14 @@ public class ProductController {
         return ResponseEntity.ok(createdProduct);
     }
 
+
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/product/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id)
@@ -34,12 +36,14 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/product/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
         Product updatedProduct = productService.updateProduct(id, productDetails);
         return ResponseEntity.ok(updatedProduct);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/product/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
